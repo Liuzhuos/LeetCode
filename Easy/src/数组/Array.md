@@ -12,9 +12,7 @@ Map<Integer, Integer> map = new HashMap<>();
 for (int i : nums) map.put(i, map.getOrDefault(i, 0) + 1);
 ```
 
-此题还有其他数学解法——使用**异或**进行求解，下附思路图
-
-![image-20231016212929200](C:\Users\LiuTZ\AppData\Roaming\Typora\typora-user-images\image-20231016212929200.png)
+此题还有其他数学解法——使用**异或**进行求解
 
 这种方法是很巧妙的，使用异或进行**去重**，第一次遍历异或后的值是单次数字的异或值，之后获取**从右向左的第一个1**所得到的数字，与原数组进行**第二次异或**就可以分开两个组啦
 
