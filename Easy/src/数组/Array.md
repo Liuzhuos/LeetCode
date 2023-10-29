@@ -57,3 +57,40 @@ class Solution {
 4. 相乘取模得结果
 
 需要注意的是，**取模**的数是9位数
+
+## LeetCode2558
+
+> 给你一个整数数组 `gifts` ，表示各堆礼物的数量。每一秒，你需要执行以下操作：
+>
+> - 选择礼物数量最多的那一堆。
+> - 如果不止一堆都符合礼物数量最多，从中选择任一堆即可。
+> - 选中的那一堆留下平方根数量的礼物（向下取整），取走其他的礼物。
+>
+> 返回在 `k` 秒后剩下的礼物数量*。*
+
+此题是比较简单的数组运算，按逻辑写代码就可以了，但写出来的代码**内存过大**，可以使用**优先队列**进行代码优化。
+
+```java
+class Solution {
+    public long pickGifts(int[] gifts, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> b - a);
+        //优先队列默认是小顶堆，最小元素在堆顶，使用lambda语法变成了最大堆，也就是说根据优先级的关系栈顶的数字永远是最大的
+        for (int gift : gifts) {
+            pq.offer(gift); // offer方法是将指定的元素插入此优先级队列。不能添加null元素。
+        }
+        while (k > 0) {
+            k--;
+            int x = pq.poll();
+            pq.offer((int) Math.sqrt(x));
+        }
+        long res = 0;
+        while (!pq.isEmpty()) { //判空
+            res += pq.poll(); //poll方法是删除元素：删除堆顶元素——队列为空的时候返回null
+        }
+        return res;
+    }
+}
+//https://blog.csdn.net/qq_43776742/article/details/92831821
+//此网站是优先队列的常用方法
+```
+
