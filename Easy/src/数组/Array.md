@@ -94,3 +94,46 @@ class Solution {
 //此网站是优先队列的常用方法
 ```
 
+## LeetCode274/275
+
+> 给你一个整数数组 `citations` ，其中 `citations[i]` 表示研究者的第 `i` 篇论文被引用的次数。计算并返回该研究者的 **`h` 指数**。
+>
+> 根据维基百科上 [h 指数的定义](https://baike.baidu.com/item/h-index/3991452?fr=aladdin)：`h` 代表“高引用次数” ，一名科研人员的 `h` **指数** 是指他（她）至少发表了 `h` 篇论文，并且每篇论文 **至少** 被引用 `h` 次。如果 `h` 有多种可能的值，**`h` 指数** 是其中最大的那个。
+
+使用两次**循环**，外循环遍历h，也就是说依次增大h值看匹配值，在代码(自己写的)中并没有写中断，它会依次遍历到结束，会有很大的改进空间
+
+```java
+//在代码中加入break语句可以减少执行用时
+if(sum>=h) res = Math.max(res,h);
+else break;
+```
+
+也可以使用**计数排序**
+
+根据定义，我们可以发现 H 指数不可能**大于**总的论文发表数，所以对于引用次数超过论文发表数的情况，我们可以将其按照总的论文发表数来计算即可。这样我们可以限制参与排序的数的大小为 [0,n]（其中 n 为总的论文发表数），使得计数排序的时间复杂度降低到 O(n)。
+
+最后我们可以**从后向前遍历**数组 counter，对于每个 0≤i≤n，在数组 counter 中得到大于或等于当前引用次数 iii 的总论文数。当我们找到一个 H 指数时跳出循环，并返回结果。
+
+```java
+public class Solution {
+    public int hIndex(int[] citations) {
+        int n = citations.length, tot = 0;
+        int[] counter = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            if (citations[i] >= n) { // 比数组大的放到最后累加
+                counter[n]++;
+            } else {
+                counter[citations[i]]++; // 比数组小的放到数组前n个里
+            }
+        }
+        for (int i = n; i >= 0; i--) {
+            tot += counter[i]; //从后依次累和后，当tot>=i时就返回i的值，此时的i就是最大值
+            if (tot >= i) {
+                return i;
+            }
+        }
+        return 0;
+    }
+}
+```
+
