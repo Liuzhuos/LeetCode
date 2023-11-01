@@ -187,3 +187,51 @@ isEmpty() ： 判断集合是否为空；
 > **注意** 操作应当 **依次有序** 执行，而不是一次性全部执行。
 
 按部就班的写代码就好了，值得注意的是在0放到尾的时候建立**新的数组**，通过判断**非零存入**，new出的数组**默认为0**。
+
+## LeetCode2352
+
+> 给你一个下标从 **0** 开始、大小为 `n x n` 的整数矩阵 `grid` ，返回满足 `Ri` 行和 `Cj` 列相等的行列对 `(Ri, Cj)` 的数目*。*
+>
+> 如果行和列以相同的顺序包含相同的元素（即相等的数组），则认为二者是相等的。
+
+这题依旧是**遍历**，在刚看到题时的想法是使用字符串，比较每一个字符串的子串是否存在，这样就可以判断是否是相同数组，但忽略了必须**顺序**一致，如果出现[11,1],[1,11]这样的就会失效。如下是**错误代码**
+
+```java
+class Solution {
+    public int equalPairs(int[][] grid) {
+        int n = grid.length;
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            String s = "";
+            for (int j = 0; j < n; j++) {
+                s += grid[i][j];
+            }
+            for (int k = 0; k < n; k++) {
+                String s1 = "";
+                for (int j = 0; j < n; j++) {
+                    s1 += grid[j][k];
+                    if(!s.contains(s1)){
+                        break;
+                    }
+                    if(j==n-1) res++;
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+
+通过学习Map来做这道题，刚好利用了Map表中可以**存储list**，并且有**containsKey**方法进行列表对比。
+
+```java
+Map<List<Integer>, Integer> cnt = new HashMap<List<Integer>, Integer>();
+//Map初始化，第一个参数是列表，第二个是这个列表出现的个数
+
+cnt.put(arr, cnt.getOrDefault(arr, 0) + 1);
+//getOrDefault方法将列表放入Map中，如果相同的话+1，因为Map是会去重的
+
+if (cnt.containsKey(arr))
+// containsKey判断是否有这个键
+```
+
