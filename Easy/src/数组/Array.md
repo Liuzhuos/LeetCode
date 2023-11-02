@@ -235,3 +235,40 @@ if (cnt.containsKey(arr))
 // containsKey判断是否有这个键
 ```
 
+## LeetCode2475
+
+> 给你一个下标从 **0** 开始的正整数数组 `nums` 。请你找出并统计满足下述条件的三元组 `(i, j, k)` 的数目：
+>
+> - `0 <= i < j < k < nums.length`
+>
+> - nums[i]、nums[j]、nums[k]两两不同
+>
+>   换句话说：`nums[i] != nums[j]`、`nums[i] != nums[k]` 且 `nums[j] != nums[k]` 。
+>
+> 返回满足上述条件三元组的数目*。*
+
+这是一道比较简单的**循环嵌套**的题，分享的是**神级算法**
+
+记当前遍历的元素数目 v，先前遍历的元素总数目为 t，那么以当前遍历的元素为中间元素的符合条件的三元组数目为：*t*×*v*×(*n*−*t*−*v*)
+
+```java
+class Solution {
+    public int unequalTriplets(int[] nums) {
+        Map<Integer, Integer> count = new HashMap<>();
+        for (int x : nums) {
+            count.merge(x, 1, Integer::sum);
+        }
+        int res = 0, n = nums.length, t = 0;
+        for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+            res += t * entry.getValue() * (n - t - entry.getValue());
+            t += entry.getValue();
+        }
+        return res;
+    }
+}
+//https://blog.csdn.net/q5706503/article/details/85122343
+//此网站是Map的使用方法
+
+//Integer::sum 是java中的静态方法，类似与lambda表达式
+```
+
