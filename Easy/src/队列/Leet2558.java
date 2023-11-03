@@ -3,7 +3,7 @@
  *Copyright 2021，YCHS Iformation&science Technology Co.,Ltd,
  *All rights reserved.
  */
-package 数组;
+package 队列;
 
 import java.util.Arrays;
 
