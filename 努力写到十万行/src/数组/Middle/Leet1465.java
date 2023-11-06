@@ -3,7 +3,7 @@
  *Copyright 2021，YCHS Iformation&science Technology Co.,Ltd,
  *All rights reserved.
  */
-package 数组;
+package 数组.Middle;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @version 1.0
  * @date 2023/10/27
  */
-public class Leet1645 {
+public class Leet1465 {
     static int MOD = 100000007;
     public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
         return (int) ((long) maxSum(h,horizontalCuts) * maxSum(w,verticalCuts) % MOD);

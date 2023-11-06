@@ -3,7 +3,7 @@
  *Copyright 2021，YCHS Iformation&science Technology Co.,Ltd,
  *All rights reserved.
  */
-package 动态规划;
+package 动态规划.Middle;
 
 /**
  * @author liuzhuo

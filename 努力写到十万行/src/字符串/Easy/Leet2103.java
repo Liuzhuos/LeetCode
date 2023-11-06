@@ -3,7 +3,7 @@
  *Copyright 2021，YCHS Iformation&science Technology Co.,Ltd,
  *All rights reserved.
  */
-package 字符串;
+package 字符串.Easy;
 
 import java.util.HashMap;
 import java.util.Map;

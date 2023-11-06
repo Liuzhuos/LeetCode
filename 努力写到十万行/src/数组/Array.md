@@ -40,7 +40,7 @@ class Solution {
 }
 ```
 
-## LeetCode1645
+## LeetCode1465
 
 > 矩形蛋糕的高度为 `h` 且宽度为 `w`，给你两个整数数组 `horizontalCuts` 和 `verticalCuts`，其中：
 >

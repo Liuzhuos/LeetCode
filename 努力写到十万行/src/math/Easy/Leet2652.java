@@ -3,7 +3,7 @@
  *Copyright 2021，YCHS Iformation&science Technology Co.,Ltd,
  *All rights reserved.
  */
-package math;
+package math.Easy;
 
 import java.util.Scanner;
 
