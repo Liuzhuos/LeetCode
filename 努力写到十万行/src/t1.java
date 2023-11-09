@@ -11,6 +11,8 @@
  */
 public class t1 {
     public static void main(String[] args) {
-        System.out.println(Integer.parseInt("1010101710",8));
+        String regex = "-?0{1}[1-7][0-7]*";
+        String str = "-3";
+        System.out.println(str.matches(regex));
     }
 }
