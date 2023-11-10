@@ -286,3 +286,37 @@ class Solution {
 
 根据按位异或运算的性质，**x=ai⊕aj**等价于 **aj=x⊕ai**，我们可以根据这一变换，设计一种「**从高位到低位依次确定 x 二进制表示的每一位**」的方法
 
+## LeetCode2300
+
+> 给你两个正整数数组 `spells` 和 `potions` ，长度分别为 `n` 和 `m` ，其中 `spells[i]` 表示第 `i` 个咒语的能量强度，`potions[j]` 表示第 `j` 瓶药水的能量强度。
+>
+> 同时给你一个整数 `success` 。一个咒语和药水的能量强度 **相乘** 如果 **大于等于** `success` ，那么它们视为一对 **成功** 的组合。
+>
+> 请你返回一个长度为 `n` 的整数数组 `pairs`，其中 `pairs[i]` 是能跟第 `i` 个咒语成功组合的 **药水** 数目。
+
+这道题主要考查**二分查找**，还有**向上取整**
+
+```java
+//这是一种向上取整的办法
+long t = (success + spells[i] - 1) / spells[i] - 1;
+
+//二分查找
+public static int binarysearch(int[] arr,int value) {
+		int low=0;//指针low表示待查元素所在范围的下界，下界索引从0开始
+		int high=arr.length-1;//指针high表示待查元素所在范围的上界
+		while(low<=high) {
+			int mid=(low+high)/2;//指针mid表示中间位置，且是向下取整
+			if(arr[mid]==value) {//若中间位置值等于我们所需要查找值，即返回中间值
+				return mid;
+			}
+			if(arr[mid]<value) {//若中间位置值小于我们所需查找值，则在后半段中查找，即将下界值变为mid+1,上界值不变
+				low=mid+1;
+			}
+			if(arr[mid]>value) {//若中间位置值大于我们所需查找值，则在前半段中查找，即将上界值变为mid-1,下界值不变
+				high=mid-1;
+			}
+		}
+		return -1;//若查找不到我们所需要值，即返回-1
+	}
+```
+
