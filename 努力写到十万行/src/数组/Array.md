@@ -393,3 +393,38 @@ arr[s] = Math.max(arr[s],num);//更新
 Map<Integer, int[]> map = new HashMap<Integer, int[]>();
 ```
 
+## LeetCode1423
+
+> 几张卡牌 **排成一行**，每张卡牌都有一个对应的点数。点数由整数数组 `cardPoints` 给出。
+>
+> 每次行动，你可以从行的开头或者末尾拿一张卡牌，最终你必须正好拿 `k` 张卡牌。
+>
+> 你的点数就是你拿到手中的所有卡牌的点数之和。
+>
+> 给你一个整数数组 `cardPoints` 和整数 `k`，请你返回可以获得的最大点数。
+
+这道题非常的巧妙，使用**逆向思维**，题目所说的点数最大之和可以转换成数组的**规定长度的和最小**，我自己写的代码是有时间限制的，**滑动窗口**的复杂度大了。题解使用O（n），值得学习
+
+```java
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length;
+        // 滑动窗口大小为 n-k
+        int windowSize = n - k;
+        // 选前 n-k 个作为初始值
+        int sum = 0;
+        for (int i = 0; i < windowSize; ++i) {
+            sum += cardPoints[i];
+        }
+        int minSum = sum;
+        for (int i = windowSize; i < n; ++i) {
+            // 滑动窗口每向右移动一格，增加从右侧进入窗口的元素值，并减少从左侧离开窗口的元素值
+            sum += cardPoints[i] - cardPoints[i - windowSize];
+            minSum = Math.min(minSum, sum);
+        }
+        return Arrays.stream(cardPoints).sum() - minSum;
+    }
+}
+//使用流求和数组，这个方法需要学会
+```
+
