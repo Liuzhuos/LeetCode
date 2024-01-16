@@ -19,5 +19,6 @@ public class Leet1154 {
         calendar.set(Integer.parseInt(time[0]),Integer.parseInt(time[1])-1,Integer.parseInt(time[2]));
         int day = calendar.get(Calendar.DAY_OF_YEAR);
         return day;
+
     }
 }
