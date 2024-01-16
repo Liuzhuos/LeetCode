@@ -19,3 +19,10 @@ instance.set(year,month-1,day);
 突破这个问题，就比较简单了
 
 还需要注意的是，日期是1-7
+
+## LeetCode1154
+
+> 给你一个字符串 `date` ，按 `YYYY-MM-DD` 格式表示一个 [现行公元纪年法](https://baike.baidu.com/item/公元/17855) 日期。返回该日期是当年的第几天。
+
+1. 字符串切割 split（“-”）
+2. 使用日历类
