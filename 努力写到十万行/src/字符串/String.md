@@ -211,4 +211,19 @@ public String entityParser(String text) {
    list.remove(list.indexOf(s));
    ```
 
+
+## LeetCode2085
+
+> 给你两个字符串数组 `words1` 和 `words2` ，请你返回在两个字符串数组中 **都恰好出现一次** 的字符串的数目。
+
+考虑情况是比较费劲的，所以使用Map将字符串进行计数存储
+
+1. 使用Map将字符串按出现次数存储
+
+2. 对比第一个map中字符串在第二个中是否出现，次数是否为一
+
+   ```java
+   for (String w : map1.keySet()) 
+   ```
+
    
