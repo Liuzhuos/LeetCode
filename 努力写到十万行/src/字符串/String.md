@@ -177,3 +177,38 @@ public String entityParser(String text) {
 在我自己的代码中，还是有一定的问题，如果出现**&&quot；**这样的判断就行不通了。可以换一个思路，在遍历的时候就判断下一个字母。或者在获得的s字符串中再进行判断。
 
 ****
+
+## LeetCode2744
+
+> 给你一个下标从 **0** 开始的数组 `words` ，数组中包含 **互不相同** 的字符串。
+>
+> 如果字符串 `words[i]` 与字符串 `words[j]` 满足以下条件，我们称它们可以匹配：
+>
+> - 字符串 `words[i]` 等于 `words[j]` 的反转字符串。
+> - `0 <= i < j < words.length`
+>
+> 请你返回数组 `words` 中的 **最大** 匹配数目。
+>
+> 注意，每个字符串最多匹配一次。
+
+1. 使用ArrayList存储数据，可以将数据过滤删除
+
+2. 使用StringBuffer方法将字符串倒置
+
+   ```java
+   String s = new StringBuffer(words[i]).reverse().toString();
+   ```
+
+3. 判断导致字符串和数组中的是否一致
+
+   ```java
+   if(list.contains(s))
+   ```
+
+4. 查询到需要删除
+
+   ```java
+   list.remove(list.indexOf(s));
+   ```
+
+   
