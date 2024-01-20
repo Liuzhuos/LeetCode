@@ -267,3 +267,32 @@ public String entityParser(String text) {
    ```
 
    
+
+## LeetCode2788
+
+> 给你一个字符串数组 `words` 和一个字符 `separator` ，请你按 `separator` 拆分 `words` 中的每个字符串。
+>
+> 返回一个由拆分后的新字符串组成的字符串数组，**不包括空字符串** 。
+>
+> **注意**
+>
+> - `separator` 用于决定拆分发生的位置，但它不包含在结果字符串中。
+> - 拆分可能形成两个以上的字符串。
+> - 结果字符串必须保持初始相同的先后顺序。
+
+这道题，一个评价 开眼了
+
+1. 在**java**中`split（）`函数中参数是正则表达式，所以，它是有转移的。在正则表达式中，点号 . 有特殊的含义，表示匹配任意字符。因此，这里需要对点号进行转义。
+
+2.  要用Pattern.quote处理一下
+
+   ```java
+   split(Pattern.quote(String.valueOf(separator)))
+   ```
+
+   在使用quote()方法之后,原有的字符串s变成了\Qs\E的样式,那么\Q和\E代表什么意思呢?
+
+   - \Q 代表字面内容的开始
+   - \E 代表字面内容的结束
+
+参考网站[Java正则表达式Pattern.quote()方法详解-CSDN博客](https://blog.csdn.net/yin380697242/article/details/52050023)
