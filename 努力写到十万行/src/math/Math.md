@@ -136,3 +136,31 @@ class Solution {
 long V = (long) length*width*height;
 ```
 
+
+
+## LeetCode365
+
+> 有两个水壶，容量分别为 `jug1Capacity` 和 `jug2Capacity` 升。水的供应是无限的。确定是否有可能使用这两个壶准确得到 `targetCapacity` 升。
+>
+> 如果可以得到 `targetCapacity` 升水，最后请用以上水壶中的一或两个来盛放取得的 `targetCapacity` 升水。
+>
+> 你可以：
+>
+> - 装满任意一个水壶
+> - 清空任意一个水壶
+> - 从一个水壶向另外一个水壶倒水，直到装满或者倒空
+
+此题，需要用到**贝祖定理**，也就是`ax+by=z` 要想等式成立，z 必须是**xy的公倍数**
+
+```java
+//java中的gcd算法
+
+//1.利用BigInteger里的a.gcd(b)方法求a和b的最大公约数
+BigInteger gcd = x.gcd(y);	//BigInteger自带的求最大公约数的方法
+
+//2.递归
+public static int gcd(int a,int b){
+   return b==0? a : gcd(b,a%b);
+}
+```
+
