@@ -625,3 +625,41 @@ class Solution {
 1. 遍历第一个数
 2. 指针初始在头和尾
 3. 根据和大小进行修改指针向中间聚拢
+
+
+
+## LeetCode2639
+
+> 给你一个下标从 **0** 开始的 `m x n` 整数矩阵 `grid` 。矩阵中某一列的宽度是这一列数字的最大 **字符串长度** 。
+>
+> - 比方说，如果 `grid = [[-10], [3], [12]]` ，那么唯一一列的宽度是 `3` ，因为 `-10` 的字符串长度为 `3` 。
+>
+> 请你返回一个大小为 `n` 的整数数组 `ans` ，其中 `ans[i]` 是第 `i` 列的宽度。
+>
+> 一个有 `len` 个数位的整数 `x` ，如果是非负数，那么 **字符串****长度** 为 `len` ，否则为 `len + 1` 。
+
+此题使用**模拟**即可
+
+优化：
+
+```java
+public int[] findColumnWidth(int[][] grid) {
+        int n = grid[0].length;
+        int[] res = new int[n];//将数组分成 两类
+        int[] min = new int[n];
+        for (int[] ints : grid) {
+            for (int i = 0; i < n; i++) {
+                if (ints[i] < min[i]) {
+                    min[i] = ints[i];
+                } else if (ints[i] > res[i]) {
+                    res[i] = ints[i];
+                }
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            res[i] = Math.max(String.valueOf(res[i]).length(), String.valueOf(min[i]).length());
+        }
+        return res;
+    }
+```
+
