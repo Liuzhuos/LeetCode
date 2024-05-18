@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 public class Leet2788 {
     public List<String> splitWordsBySeparator(List<String> words, char separator) {
         List<String> list = new ArrayList<>();
-        for (var w : words) {
-            for (var s : w.split(Pattern.quote(String.valueOf(separator)))) {
+        for (String w : words) {
+            for (String s : w.split(Pattern.quote(String.valueOf(separator)))) {
                 if (s.length() > 0) {
                     list.add(s);
                 }
