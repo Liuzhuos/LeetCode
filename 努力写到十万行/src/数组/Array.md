@@ -712,3 +712,41 @@ Combiner: 调用一个函数来组合归并操作的结果，当归并是并行�
 */
 ```
 
+## LeetCode3128
+
+> 给你一个二维 boolean 矩阵 `grid` 。
+>
+> 请你返回使用 `grid` 中的 3 个元素可以构建的 **直角三角形** 数目，且满足 3 个元素值 **都** 为 1 。
+>
+> **注意：**
+>
+> - 如果 `grid` 中 3 个元素满足：一个元素与另一个元素在 **同一行**，同时与第三个元素在 **同一列** ，那么这 3 个元素称为一个 **直角三角形** 。这 3 个元素互相之间不需要相邻。
+
+简单来说，这道题可以使用遍历完成，但是如果纯粹遍历就会超时，所以进行改进。
+
+
+
+```java
+class Solution {
+    public long numberOfRightTriangles(int[][] grid) {
+        int n = grid.length, m = grid[0].length;
+        int[] col = new int[m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                col[j] += grid[i][j];
+            }
+        }
+        long res = 0;
+        for (int i = 0; i < n; i++) {
+            int row = Arrays.stream(grid[i]).sum();
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 1) {
+                    res += (row - 1) * (col[j] - 1);
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+
