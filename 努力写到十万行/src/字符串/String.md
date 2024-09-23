@@ -325,3 +325,23 @@ public String entityParser(String text) {
 
 1. 使用Map记录上一次的位置
 2. 再次调用get进行计算
+
+
+
+## LeetCode2185
+
+> 给你一个字符串数组 `words` 和一个字符串 `pref` 。
+>
+> 返回 `words` 中以 `pref` 作为 **前缀** 的字符串的数目。
+>
+> 字符串 `s` 的 **前缀** 就是 `s` 的任一前导连续字符串。
+
+这题就是一道简单题，使用字符串的函数，在这里我总结一下
+
+```JAVA
+String s = "adsasd";
+s.indexOf("ads") //indexOf() 从左开始返回参数在字符串第一次出现的下标
+s.startsWith（"ads"） //startsWith() 判断前缀是不是参数，返回布尔值
+s.endsWith("ads") //同理没看后缀
+```
+
